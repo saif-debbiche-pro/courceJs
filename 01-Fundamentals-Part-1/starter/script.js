@@ -41,3 +41,61 @@ hello =25;
 console.log(typeof children);
 //**** dont forget that the type of null return object (bug that never fixed)
 console.log(typeof null);
+
+
+//declaring variables in JS
+
+//we use let for variables that we can change
+let myAge =13;
+age =31;
+
+// we use cont to declare variables that should not change
+const birthYear=1991;
+//birthYear=1990; not allowd
+// const job; not allowd
+// *** we have to declare variables as const when we can and only with let if there is a 
+// chance to change the variable in the future
+
+// *** when we assign a variable without declaring it JS will not declare it
+// in the current scope it will just add a property on the global object 
+myName="saif";
+
+
+
+// OPERATORS
+// Arithmatic operators
+const ageSaif =2037-1999;
+console.log(ageSaif);
+const ageAli =2037-2001;
+// we can pass multiple parameters to the console.log function
+console.log(ageAli,ageSaif);
+// 2**2 it is 2 to the power of 2 = 2*2*2
+console.log(ageAli*2,ageAli/10,2**2);
+
+// concat strings 
+console.log(firstName + ' '+lastName);
+
+// dont forget the typeof operator
+
+// Assignment operators
+// x will be 15 because the + operrator is executed before the = operaor
+
+let x=10+5;
+
+x+=10; //x=x+10
+x*=10; //x=x*10
+x-=10; //x=x-10
+x/=10; //x=x+10
+x++; //x=x+1
+x--; //x=x-1
+
+// Comparison operators
+
+console.log(age>ageAli);//>,<,<=,>=
+console.log(age==ageAli);
+console.log(age===ageAli);
+const isFullAge=ageAli >= 18;
+
+//  operator percedence order in js
+let y,z;
+y=z=10/2-5+15;// first / then - then + , then we start with  the right =  
