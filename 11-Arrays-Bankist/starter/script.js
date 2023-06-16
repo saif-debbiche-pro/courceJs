@@ -65,12 +65,73 @@ const inputClosePin = document.querySelector('.form__input--pin');
 /////////////////////////////////////////////////
 // LECTURES
 
+
 const currencies = new Map([
   ['USD', 'United States dollar'],
   ['EUR', 'Euro'],
   ['GBP', 'Pound sterling'],
 ]);
 
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
+
+
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+
+const displayMovements=function(movements){
+  containerMovements.innerHTML="";
+  movements.forEach((mov,i) => {
+    
+    // const movRow=document.createElement('div');
+    // movRow.classList.add("movements__row");
+    // const movType=document.createElement('div');
+    // movType.classList.add("movements__type");
+    // if(mov<0){
+    //   movType.classList.add("movements__type--withdrawal");
+    //   movType.textContent=i+" withdrawal";
+    // }else{
+    //   movType.classList.add("movements__type--deposit");
+    //   movType.textContent=i+" deposit";
+    // }
+    // movRow.append(movType);
+
+    // const movDate=document.createElement('div');
+    // movDate.classList.add("movements__date");
+    // movDate.textContent="24/01/2037";
+    // movRow.append(movDate);
+    
+    // const movValue=document.createElement('div');
+    // movValue.classList.add("movements__value");
+    // movValue.textContent=mov;
+    // movRow.append(movValue);
+
+    // containerMovements.append(movRow);
+    // OR with template literal
+    const html=` <div class="movements__row">
+    <div class="movements__type movements__type--${mov<0?'withdrawal':'deposit'}">
+       ${i+1} ${mov<0?'withdrawal':'deposit'}
+    </div>
+    <div class="movements__date">24/01/2037</div>
+    <div class="movements__value">${mov}</div>
+  </div>
+  </div>`
+  containerMovements.insertAdjacentHTML('afterbegin',html);
+    
+  });
+}
+displayMovements(account1.movements);
+
+// map 
+const user ='Steven Thomas Williams';
+const mkUserName=function(accounts){4
+
+   accounts.forEach((acc)=>{
+    
+    const userWords=acc.owner.split(' ');
+    acc.username=userWords.map((word)=>word.at(0).toLowerCase()).join('');
+  })
+  
+}
+mkUserName(accounts);
+console.log(accounts);
