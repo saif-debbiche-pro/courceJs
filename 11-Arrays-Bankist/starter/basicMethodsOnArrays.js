@@ -77,6 +77,10 @@ const inputClosePin = document.querySelector('.form__input--pin');
 // 5)JOIN 
 // 6)at 
 // 7)forEach method (no break no continue),it work with (arrays ,maps,sets...)
+// 7)find ,findIndex 
+// 8)some,every 
+// 9)flat, flatMap
+// 10)sort
 
 
 
@@ -130,9 +134,9 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 
 // for(const mov of movements){
-for(const [i,mov] of movements.entries()){
-  if(mov>0){
-    console.log(`Movement ${i} You desposited ${mov}`);
+  for(const [i,mov] of movements.entries()){
+    if(mov>0){
+      console.log(`Movement ${i} You desposited ${mov}`);
   }else{
     console.log(`Movement ${i} You withdrew ${Math.abs(mov)}`);
   }
@@ -147,7 +151,7 @@ movements.forEach(function(mov,i,array){
   }
 })
 // function printHello(a){
-//   console.log('hello'.repeat(a));
+  //   console.log('hello'.repeat(a));
 // }
 
 // printHello(5,6);
@@ -174,3 +178,73 @@ console.log(currenciesUnique);
 currenciesUnique.forEach(function(value,key,set){
   console.log(`${key}:${value}`)//key=value(set can not have indexes)
 })
+// 7)find ,findIndex
+// 1)find
+
+const mov=movements.find(mov=>mov<0);//return first element that match
+console.log(mov);//-400
+
+const account=accounts.find(acc=>acc.owner==="Jessica Davis");
+console.log(account);//{owner: 'Jessica Davis', movements: Array(8), interestRate: 1.5, pin: 2222}
+
+// 2)finedIndex (same as find but it return the index)
+
+// 8)some,every
+// 1)some
+console.log(movements);
+console.log(movements.includes(-130));//true (for equality)
+
+const anyDeposit=movements.some(mov=>mov>0); //for conditions
+console.log(anyDeposit);//true
+// 2)every(same as some but it return true if all the elements in the array satisfied the condition)
+
+
+// 9)flat, flatMap
+// 1)flat 
+const arr4=[[1,2,3],[4,5,6],7,8];
+console.log(arr4.flat());//[1, 2, 3, 4, 5, 6, 7, 8]
+
+
+const arrDeep=[[[1,2],[3]],[[4,5],6],7,8];
+console.log(arrDeep.flat());//(6) [Array(2), Array(1), Array(2), 6, 7, 8] ((1 level deep))
+console.log(arrDeep.flat(2));//(8) [1, 2, 3, 4, 5, 6, 7, 8] ((2 level deep))
+
+
+// with flat
+const overalBalance=accounts
+.map(acc=>acc.movements)
+.flat()
+.reduce((acc,mov)=>acc+mov,0);
+console.log(overalBalance);//17840
+
+// 2)flatMap
+// with flatMap (but always on level deep)
+const overalBalance2=accounts
+.flatMap(acc=>acc.movements)
+.reduce((acc,mov)=>acc+mov,0);
+console.log(overalBalance);//17840
+
+// 10)sort (mutate the original array)
+
+// strings
+const owners=["saif","ali","mouhamed","jamel"];
+console.log(owners.sort());//(4) ['ali', 'jamel', 'mouhamed', 'saif']
+
+// numbers
+console.log(movements.sort());//[-130, -400, -650, 1300, 200, 3000, 450, 70] !!!
+// =>the sort method sort based on strings (convert every thing to string and then sort)
+// return < 0,a,b (keep order)
+// return > 0,b,a (switch order)
+movements.sort((a,b)=>{
+ if(a>b){
+  return 1;
+ }
+ if(a<b){
+  return -1;
+ }
+})
+
+// OR
+movements.sort((a,b)=>a-b);
+
+console.log(movements);//(8) [-650, -400, -130, 70, 200, 450, 1300, 3000]
